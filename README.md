@@ -1,8 +1,6 @@
-# nu_plugin_port_scan
+# nu_plugin_qr_maker
 
-A [nushell](https://www.nushell.sh/) plugin for scanning ports on a target
-
-Similar to `nc -vz {ip} {port} -w {timeout}` the parameters are mapped to `port scan {ip} {port} -t {timeout}`
+A [nushell](https://www.nushell.sh/) plugin to create qr code in terminal
 
 ## Examples
 
