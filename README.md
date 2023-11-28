@@ -5,58 +5,32 @@ A [nushell](https://www.nushell.sh/) plugin to create qr code in terminal
 ## Examples
 
 ```bash
-~> port scan 8.8.8.8 53
-╭─────────┬───────────────────╮
-│ address │ 8.8.8.8           │
-│ port    │ 53                │
-│ result  │ Open              │
-│ is_open │ true              │
-│ elapsed │ 140ms 965µs 400ns │
-╰─────────┴───────────────────╯
+~> "https://google.com" | to qr
 ```
 
-```bash
-~> 50..60 | par-each { |it| port scan 8.8.8.8 $it -t 100ms } |  where is_open | collect { $in }
-╭───┬─────────┬──────┬────────┬─────────┬──────────────────╮
-│ # │ address │ port │ result │ is_open │     elapsed      │
-├───┼─────────┼──────┼────────┼─────────┼──────────────────┤
-│ 0 │ 8.8.8.8 │   53 │ Open   │ true    │ 39ms 704µs 200ns │
-╰───┴─────────┴──────┴────────┴─────────┴──────────────────╯
-```
-
-```bash
-~> [8.8.8.8, 1.1.1.1, 1.0.0.1, 4.2.2.4] | par-each { |it| port scan $it 53 -t 1sec } |  where is_open | collect { $in } | sort-by elapsed
-╭───┬─────────┬──────┬────────┬─────────┬──────────────────╮
-│ # │ address │ port │ result │ is_open │     elapsed      │
-├───┼─────────┼──────┼────────┼─────────┼──────────────────┤
-│ 0 │ 8.8.8.8 │   53 │ Open   │ true    │ 40ms 519µs 900ns │
-│ 1 │ 1.0.0.1 │   53 │ Open   │ true    │ 93ms 471µs 500ns │
-│ 2 │ 4.2.2.4 │   53 │ Open   │ true    │       97ms 130µs │
-│ 3 │ 1.1.1.1 │   53 │ Open   │ true    │ 99ms 867µs 500ns │
-╰───┴─────────┴──────┴────────┴─────────┴──────────────────╯
-```
+![image](https://github.com/FMotalleb/nu_plugin_qr_maker/assets/30149519/1771961a-b06b-4310-81ed-63865e8d2f8e)
 
 ## Installing
 
 * using [nupm](https://github.com/nushell/nupm)
 
 ```bash
-git clone https://github.com/FMotalleb/nu_plugin_port_scan.git
-nupm install --path nu_plugin_port_scan -f
+git clone https://github.com/FMotalleb/nu_plugin_qr_maker.git
+nupm install --path nu_plugin_qr_maker -f
 ```
 
 * or compile manually
 
 ```bash
-git clone https://github.com/FMotalleb/nu_plugin_port_scan.git
-cd nu_plugin_port_scan
+git clone https://github.com/FMotalleb/nu_plugin_qr_maker.git
+cd nu_plugin_qr_maker
 cargo build
-register target/debug/nu_plugin_port_scan
+register target/debug/nu_plugin_qr_maker
 ```
 
 * or using cargo
 
 ```bash
-cargo install nu_plugin_port_scan
-register  ~/.cargo/bin/nu_plugin_port_scan
+cargo install nu_plugin_qr_maker
+register  ~/.cargo/bin/nu_plugin_qr_maker
 ```
