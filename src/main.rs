@@ -1,5 +1,5 @@
 use nu_plugin::{self, EvaluatedCall, LabeledError};
-use nu_protocol::{ Category, PluginExample, PluginSignature, Span, Type, Value};
+use nu_protocol::{ Category, PluginExample, PluginSignature,  Type, Value};
 
 pub struct Plugin;
 
