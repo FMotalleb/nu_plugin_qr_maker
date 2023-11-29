@@ -1,5 +1,6 @@
 use nu_plugin::{self, EvaluatedCall, LabeledError};
 use nu_protocol::{ Category, PluginExample, PluginSignature,  Type, Value};
+use qr2term::{qr, render::{self, Renderer}};
 
 pub struct Plugin;
 
@@ -27,7 +28,7 @@ impl nu_plugin::Plugin for Plugin {
         input: &Value,
     ) -> Result<Value, LabeledError> {
         match input {
-            Value::String { val, .. } => match qr2term::generate_qr_string(val) {
+            Value::String { val, .. } => match generate_qr(val) {
                 Ok(res) => return Ok(Value::string(res, call.head)),
                 Err(qerr) => {
                     return Err(LabeledError {
@@ -45,6 +46,19 @@ impl nu_plugin::Plugin for Plugin {
             span: Some(call.head),
         });
     }
+}
+
+fn generate_qr(val: &String) -> Result<String, qr2term::QrError> {
+    let mut matrix = qr::Qr::from(val)?.to_matrix();
+    // Padding and theme
+    matrix.surround(2, render::QrDark);
+    
+    // Render QR code to a String
+    let mut buf = Vec::new();
+    Renderer::default()
+        .render(&matrix, &mut buf)
+        .expect("failed to generate QR code string");
+    Ok(String::from_utf8(buf).unwrap())
 }
 
 fn main() {
