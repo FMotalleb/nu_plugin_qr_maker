@@ -51,7 +51,7 @@ impl nu_plugin::Plugin for Plugin {
 fn generate_qr(val: &String) -> Result<String, qr2term::QrError> {
     let mut matrix = qr::Qr::from(val)?.to_matrix();
     // Padding and theme
-    matrix.surround(2, render::QrDark);
+    matrix.surround(2, render::QrLight);
     
     // Render QR code to a String
     let mut buf = Vec::new();
