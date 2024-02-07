@@ -24,16 +24,17 @@ impl nu_plugin::Plugin for Plugin {
     fn run(
         &mut self,
         _name: &str,
+        _config: &Option<Value>,
         call: &EvaluatedCall,
         input: &Value,
     ) -> Result<Value, LabeledError> {
         match input {
             Value::String { val, .. } => match generate_qr(val) {
                 Ok(res) => return Ok(Value::string(res, call.head)),
-                Err(qerr) => {
+                Err(qr_err) => {
                     return Err(LabeledError {
                         label: "error when tried to create qr code".to_string(),
-                        msg: qerr.to_string(),
+                        msg: qr_err.to_string(),
                         span: Some(call.head),
                     })
                 }
