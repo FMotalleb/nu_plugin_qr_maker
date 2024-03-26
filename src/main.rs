@@ -1,4 +1,4 @@
-use nu_plugin::{self, EvaluatedCall, LabeledError};
+use nu_plugin::{EvaluatedCall, LabeledError};
 use nu_protocol::{ Category, PluginExample, PluginSignature,  Type, Value};
 use qr2term::{qr, render::{self, Renderer}};
 
