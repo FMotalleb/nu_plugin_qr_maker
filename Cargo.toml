@@ -6,11 +6,11 @@ keywords = ["nushell", "qr-code", "plugin"]
 homepage = "https://github.com/FMotalleb/nu_plugin_qr_maker"
 repository = "https://github.com/FMotalleb/nu_plugin_qr_maker"
 description = "A nushell plugin to create qr code in terminal"
-version = "1.0.4"
+version = "1.1.0"
 edition = "2021"
 readme = "README.md"
 
 [dependencies]
-nu-plugin = "0.91.0"
-nu-protocol = { version = "0.91.0", features = ["plugin"] }
+nu-plugin = "0.92.2"
+nu-protocol = { version = "0.92.2", features = ["plugin"] }
 qr2term = { version = "0.3.1" }
